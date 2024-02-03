@@ -1,12 +1,10 @@
-import { atom, useAtom } from "jotai"
+import { useAtom } from "jotai"
+import { atomWithStorage } from 'jotai/utils'
 
-import { Mail, mails } from "@/data"
+import { mails } from "@/data"
 
-type Config = {
-  selected: Mail["id"] | null
-}
 
-const configAtom = atom<Config>({
+const configAtom = atomWithStorage('jotai:mailId',{
   selected: mails[0].id,
 })
 
