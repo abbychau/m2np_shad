@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { Button } from "./components/ui/button";
+import { ThemeProvider } from "@/components/themeProvider";
+
 import MailPage from "./page";
 function App() {
   const [count, setCount] = useState(0);
 
 
   return (
-    <>
+    <ThemeProvider>
         <MailPage />
       
-    </>
+    </ThemeProvider>
   );
 }
 

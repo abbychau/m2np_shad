@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils"
 import { Separator } from "@/registry/new-york/ui/separator"
 import { ResizablePanel } from "@/registry/new-york/ui/resizable"
 import { DrawingPinIcon } from "@radix-ui/react-icons"
+import { ThemeSwitcher } from "./themeSwitcher"
 
 interface MailProps {
   accounts: {
@@ -66,7 +67,10 @@ export function LeftPanel({
         {isCollapsed ? (
           <h1 className="text-xl font-bold">M<sup>2</sup></h1>
         ) : (
+          <>
           <h1 className="text-xl font-bold">M<sup>2</sup>NP</h1>
+          <ThemeSwitcher />
+          </>
         )}
       </div>
       <Separator />

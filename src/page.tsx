@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 import { Mail } from "@/components/mail"
 import { accounts, mails } from "@/data"
 import { CookiesProvider, useCookies } from "react-cookie";
