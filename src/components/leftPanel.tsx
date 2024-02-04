@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 import { Separator } from "@/registry/new-york/ui/separator"
 import { ResizablePanel } from "@/registry/new-york/ui/resizable"
 import { ThemeSwitcher } from "./themeSwitcher"
+import { UpdateIcon } from "@radix-ui/react-icons"
 
 interface MailProps {
   accounts: {
@@ -69,15 +70,15 @@ export function LeftPanel({
         isCollapsed={isCollapsed}
         links={[
           {
-            title: "Inbox",
+            title: "Timeline",
             label: "128",
-            icon: Inbox,
+            icon: icon.Newspaper,
             variant: "default",
           },
           {
             title: "Updated",
             label: "9",
-            icon: File,
+            icon: UpdateIcon,
             variant: "ghost",
           },
           {
@@ -87,7 +88,7 @@ export function LeftPanel({
             variant: "ghost",
           },
           {
-            title: "Random",
+            title: "Random Posts",
             label: "23",
             icon: icon.LucideArrowDownAZ,
             variant: "ghost",
@@ -99,9 +100,9 @@ export function LeftPanel({
             variant: "ghost",
           },
           {
-            title: "Archive",
+            title: "Bookmarked",
             label: "",
-            icon: Archive,
+            icon: icon.BookMarked,
             variant: "ghost",
           },
         ]}
@@ -117,27 +118,21 @@ export function LeftPanel({
             variant: "ghost",
           },
           {
-            title: "Updates",
-            label: "342",
+            title: "System Updates",
+            label: "1",
             icon: AlertCircle,
             variant: "ghost",
           },
           {
-            title: "Forums",
-            label: "128",
-            icon: MessagesSquare,
+            title: "Publications",
+            label: "3",
+            icon: icon.BookOpen,
             variant: "ghost",
           },
           {
-            title: "Shopping",
+            title: "NF - Art",
             label: "8",
             icon: ShoppingCart,
-            variant: "ghost",
-          },
-          {
-            title: "Promotions",
-            label: "21",
-            icon: Archive,
             variant: "ghost",
           },
         ]}

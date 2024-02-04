@@ -6,11 +6,17 @@ import {
   Archive,
   ArchiveX,
   Clock,
+  Coins,
   Forward,
+  Heart,
   MoreVertical,
   Reply,
   ReplyAll,
+  Share,
+  Share2,
+  Sparkles,
   Trash2,
+  VolumeX,
 } from "lucide-react"
 
 import {
@@ -43,44 +49,30 @@ import {
   TooltipTrigger,
 } from "@/registry/new-york/ui/tooltip"
 import { Mail } from "@/data"
+import { cn } from "@/lib/utils"
+import { HeartFilledIcon } from "@radix-ui/react-icons"
+import { useState } from "react"
 
 interface MailDisplayProps {
   mail: Mail | null
 }
 
 export function MailDisplay({ mail }: MailDisplayProps) {
-  const today = new Date()
-
+  const [post, setPost] = useState<Mail | null>(null)
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center p-2">
         <div className="flex items-center gap-2">
+
+
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" disabled={!mail}>
-                <Archive className="h-4 w-4" />
-                <span className="sr-only">Archive</span>
+                <VolumeX className="h-4 w-4" />
+                <span className="sr-only">Mute</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Archive</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
-                <ArchiveX className="h-4 w-4" />
-                <span className="sr-only">Move to junk</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Move to junk</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
-                <Trash2 className="h-4 w-4" />
-                <span className="sr-only">Move to trash</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Move to trash</TooltipContent>
+            <TooltipContent>Mute</TooltipContent>
           </Tooltip>
           <Separator orientation="vertical" className="mx-1 h-6" />
           <Tooltip>
@@ -88,88 +80,128 @@ export function MailDisplay({ mail }: MailDisplayProps) {
               <PopoverTrigger asChild>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" size="icon" disabled={!mail}>
-                    <Clock className="h-4 w-4" />
-                    <span className="sr-only">Snooze</span>
+                    {
+                      mail.labels.includes("r") ? <Sparkles className="h-4 w-4" /> : <Coins className="h-4 w-4" />
+                    }
+                    
+                    <span className="sr-only">Credit</span>
                   </Button>
                 </TooltipTrigger>
               </PopoverTrigger>
-              <PopoverContent className="flex w-[535px] p-0">
-                <div className="flex flex-col gap-2 border-r px-2 py-4">
-                  <div className="px-4 text-sm font-medium">Snooze until</div>
-                  <div className="grid min-w-[250px] gap-1">
+              <PopoverContent className="p-0">
+                <div className={
+                  cn(
+                    "py-2 px-2",
+                    mail.labels.includes("r") ? "border-r" : ""
+                  )}>
+
+                  <div className="px-4 pt-2 pb-4 text-sm font-bold">Give Credits</div>
+                  <Separator />
+                  <div className="grid min-w-[250px] gap-1 pt-2 ">
                     <Button
                       variant="ghost"
                       className="justify-start font-normal"
                     >
-                      Later today{" "}
+                      M2NP Token{" "}
                       <span className="ml-auto text-muted-foreground">
-                        {format(addHours(today, 4), "E, h:m b")}
+                        1
                       </span>
                     </Button>
                     <Button
                       variant="ghost"
                       className="justify-start font-normal"
                     >
-                      Tomorrow
+                      M Token{" "}
                       <span className="ml-auto text-muted-foreground">
-                        {format(addDays(today, 1), "E, h:m b")}
+                        3353
                       </span>
                     </Button>
                     <Button
                       variant="ghost"
                       className="justify-start font-normal"
                     >
-                      This weekend
+                      NF - Arts{" "}
                       <span className="ml-auto text-muted-foreground">
-                        {format(nextSaturday(today), "E, h:m b")}
-                      </span>
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      className="justify-start font-normal"
-                    >
-                      Next week
-                      <span className="ml-auto text-muted-foreground">
-                        {format(addDays(today, 7), "E, h:m b")}
+                        3
                       </span>
                     </Button>
                   </div>
                 </div>
-                <div className="p-2">
-                  <Calendar />
-                </div>
+                {
+                  // if post is being credited by other users, show this
+                  mail.labels.includes("r") ? (
+                    <div className="gap-2 border-r px-2 py-4">
+                      
+                    <div className="px-4 text-sm font-bold">Give Credits</div>
+                    <Separator />
+                    <div className="grid min-w-[250px] gap-1">
+                      <Button
+                        variant="ghost"
+                        className="justify-start font-normal"
+                      >
+                        M2NP Token{" "}
+                        <span className="ml-auto text-muted-foreground">
+                          1
+                        </span>
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="justify-start font-normal"
+                      >
+                        M Token{" "}
+                        <span className="ml-auto text-muted-foreground">
+                          3353
+                        </span>
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        className="justify-start font-normal"
+                      >
+                        NF - Arts{" "}
+                        <span className="ml-auto text-muted-foreground">
+                          3
+                        </span>
+                      </Button>
+                    </div>
+                  </div>) : (
+                    <div className="flex flex-col gap-2">
+                      <Separator />
+                      <div className="px-4 pt-2 pb-4 text-sm font-bold">This post is not credited yet.</div>
+                    </div>
+                  )
+                }
               </PopoverContent>
             </Popover>
-            <TooltipContent>Snooze</TooltipContent>
+            <TooltipContent>Coins</TooltipContent>
           </Tooltip>
         </div>
         <div className="ml-auto flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
-                <Reply className="h-4 w-4" />
-                <span className="sr-only">Reply</span>
+              <Button variant="ghost" size="icon" disabled={!mail} onClick={
+                ()=>{
+                  if(!mail) return
+                  post.liked = !post.liked
+                  setPost({...post})
+                }
+              }>
+                {
+                  post?.liked ? <HeartFilledIcon className="h-4 w-4" /> : <Heart className="h-4 w-4" />
+                }
+                <span className="sr-only">Like</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Reply</TooltipContent>
+            <TooltipContent>Like</TooltipContent>
           </Tooltip>
+
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" disabled={!mail}>
-                <ReplyAll className="h-4 w-4" />
-                <span className="sr-only">Reply all</span>
+                <Share2 className="h-4 w-4" />
+                <span className="sr-only">Share</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Reply all</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
-                <Forward className="h-4 w-4" />
-                <span className="sr-only">Forward</span>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>Forward</TooltipContent>
+            <TooltipContent>Share</TooltipContent>
           </Tooltip>
         </div>
         <Separator orientation="vertical" className="mx-2 h-6" />
@@ -181,10 +213,8 @@ export function MailDisplay({ mail }: MailDisplayProps) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Mark as unread</DropdownMenuItem>
-            <DropdownMenuItem>Star thread</DropdownMenuItem>
-            <DropdownMenuItem>Add label</DropdownMenuItem>
-            <DropdownMenuItem>Mute thread</DropdownMenuItem>
+            <DropdownMenuItem>Remind Me Again</DropdownMenuItem>
+            <DropdownMenuItem>Bookmark</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
@@ -205,9 +235,6 @@ export function MailDisplay({ mail }: MailDisplayProps) {
               <div className="grid gap-1">
                 <div className="font-semibold">{mail.name}</div>
                 <div className="line-clamp-1 text-xs">{mail.subject}</div>
-                <div className="line-clamp-1 text-xs">
-                  <span className="font-medium">Reply-To:</span> {mail.email}
-                </div>
               </div>
             </div>
             {mail.date && (
@@ -233,8 +260,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
                     htmlFor="mute"
                     className="flex items-center gap-2 text-xs font-normal"
                   >
-                    <Switch id="mute" aria-label="Mute thread" /> Mute this
-                    thread
+                    <Switch id="mute" aria-label="Mute thread" /> Send Anonymously
                   </Label>
                   <Button
                     onClick={(e) => e.preventDefault()}

@@ -19,10 +19,11 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Button } from "@/registry/new-york/ui/button";
 import { Label } from "@/registry/new-york/ui/label";
 import { Input } from "@/registry/new-york/ui/input";
-import { CopyIcon } from "lucide-react";
+import { CoinsIcon, CopyIcon } from "lucide-react";
 import { DialogClose } from "@/registry/default/ui/dialog";
 import { useToast } from "@/components/ui/use-toast"
 import { useAuthToken } from "@/useHooks";
+import { useLayout } from "@/useHooks";
 //const strM2NP = "M-&gt;NP";
 
 
@@ -30,6 +31,7 @@ export function Menu() {
   const { setTheme } = useTheme()
   const { toast } = useToast()
   const [_authToken, setAuthToken] = useAuthToken();
+  const [layout, setLayout] = useLayout();
   return (
     <Dialog>
 
@@ -104,7 +106,7 @@ export function Menu() {
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger className="relative">File</MenubarTrigger>
+        <MenubarTrigger className="relative">Posts</MenubarTrigger>
         <MenubarContent>
           <MenubarSub>
             <MenubarSubTrigger>New</MenubarSubTrigger>
@@ -138,14 +140,20 @@ export function Menu() {
       <MenubarMenu>
         <MenubarTrigger>View</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>Show Playing Next</MenubarCheckboxItem>
-          <MenubarCheckboxItem checked>Show Lyrics</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked disabled>Show Menubar</MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarItem inset disabled>
             Show Status Bar
           </MenubarItem>
           <MenubarSeparator />
-          <MenubarItem inset>Hide Sidebar</MenubarItem>
+          <MenubarCheckboxItem
+          checked={layout.collapsed}
+          onClick={
+            (e)=>{
+              e.preventDefault();
+              setLayout({...layout, collapsed: !layout.collapsed})
+            }
+          }>Collapsed</MenubarCheckboxItem>
           <MenubarItem disabled inset>
             Enter Full Screen
           </MenubarItem>
@@ -157,13 +165,16 @@ export function Menu() {
           <MenubarLabel inset>Switch Color Mode</MenubarLabel>
           <MenubarSeparator />
           <MenubarRadioGroup value={useTheme().theme}>
-            <MenubarRadioItem value="light" onClick={()=>{
+            <MenubarRadioItem value="light" onClick={(e)=>{
+              e.preventDefault();
               setTheme("light")
             }}>Light</MenubarRadioItem>
-            <MenubarRadioItem value="dark" onClick={()=>{
+            <MenubarRadioItem value="dark" onClick={(e)=>{
+              e.preventDefault();
               setTheme("dark")
             }}>Dark</MenubarRadioItem>
-            <MenubarRadioItem value="system" onClick={()=>{
+            <MenubarRadioItem value="system" onClick={(e)=>{
+              e.preventDefault();
               setTheme("system")
             }}>System</MenubarRadioItem>
           </MenubarRadioGroup>
@@ -175,6 +186,19 @@ export function Menu() {
           </DialogTrigger>
         </MenubarContent>
       </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger className="relative">Assets</MenubarTrigger>
+        <MenubarContent>
+          <MenubarLabel>Assets</MenubarLabel>
+          <MenubarSeparator />
+          <MenubarItem disabled style={{}}>
+            <CoinsIcon className="h-4 w-4 mr-3" />
+            M2NP Token
+          <MenubarShortcut>1</MenubarShortcut>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+
     </Menubar>
     </Dialog>
   )

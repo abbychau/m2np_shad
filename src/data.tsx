@@ -8,6 +8,9 @@ export const mails = [
     date: "2023-10-22T09:00:00",
     read: true,
     labels: ["meeting", "work", "important"],
+    liked: true,
+    likeCount: 3,
+    
   },
   {
     id: "110e8400-e29b-11d4-a716-446655440000",
@@ -218,82 +221,102 @@ export const contacts = [
   {
     name: "Emma Johnson",
     email: "emma.johnson@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Liam Wilson",
     email: "liam.wilson@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Olivia Davis",
     email: "olivia.davis@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Noah Martinez",
     email: "noah.martinez@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Ava Taylor",
     email: "ava.taylor@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Lucas Brown",
     email: "lucas.brown@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Sophia Smith",
     email: "sophia.smith@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Ethan Wilson",
     email: "ethan.wilson@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Isabella Jackson",
     email: "isabella.jackson@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Mia Clark",
     email: "mia.clark@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Mason Lee",
     email: "mason.lee@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Layla Harris",
     email: "layla.harris@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "William Anderson",
     email: "william.anderson@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Ella White",
     email: "ella.white@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "James Thomas",
     email: "james.thomas@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Harper Lewis",
     email: "harper.lewis@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Benjamin Moore",
     email: "benjamin.moore@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Aria Hall",
     email: "aria.hall@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Henry Turner",
     email: "henry.turner@example.com",
+    slogan: "Senior Developer",
   },
   {
     name: "Scarlett Adams",
     email: "scarlett.adams@example.com",
+    slogan: "Senior Developer",
   },
 ]
 

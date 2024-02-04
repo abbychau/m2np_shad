@@ -8,10 +8,8 @@ import { Label } from "@/registry/new-york/ui/label"
 //axios
 import axios from 'axios';
 import { Metadata } from "next"
-import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/registry/new-york/ui/button"
 import { DialogLink } from "./components/dialogLink";
 import { TermsOfService } from "./data";
 export const metadata: Metadata = {
@@ -20,9 +18,6 @@ export const metadata: Metadata = {
 }
 
 export default function LoginPage() {
-
-
-
   return (
     <>
       <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -47,10 +42,10 @@ export default function LoginPage() {
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
-                &ldquo;The greatest glory in living lies not in never falling, but in rising every time we fall.&rdquo;
+                &ldquo;今後的遊戲史上或許無論如何也做不出，也不會再做出這樣的遊戲了。&rdquo;
               </p>
               <footer className="text-sm">
-                &mdash; <cite>Nelson Mandela</cite>
+                &mdash; <cite>櫻井政博</cite>
               </footer>
             </blockquote>
           </div>
@@ -93,10 +88,12 @@ interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const [authToken, setAuthToken] = useAuthToken();
-  const [username, setUsername] = useState('');
+  const [_authToken, setAuthToken] = useAuthToken();
+  const [username, _setUsername] = useState('');
   const [password, setPassword] = useState('');
   const login = async () => {
+
+    setIsLoading(true)
     axios.post('http://localhost:3000/entrance/login', {
       username: username,
       password: password
@@ -106,6 +103,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }).catch((error) => {
       console.log(error);
       setAuthToken("2222");
+    }).finally(() => {
+      setIsLoading(false)
     });
   }
   const onKeyDown = (e: any) => {
@@ -114,62 +113,59 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
   }
 
-  const githubLogin = async () => {
-  }
-  async function onSubmit(event: React.SyntheticEvent) {
+  const githubLogin = (event: React.SyntheticEvent) => {
     event.preventDefault()
     setIsLoading(true)
 
     setTimeout(() => {
       setIsLoading(false)
+      setAuthToken("1111");
     }, 3000)
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-              onChange={
-                (e: any) => {
-                  setPassword(e.target.value)
-                }}
-              onKeyDown={onKeyDown}
-            />
-            <Input
-              id="password"
-              placeholder="password"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="password"
-              autoCorrect="off"
-              disabled={isLoading}
-              onChange={
-                (e: any) => {
-                  setPassword(e.target.value)
-                }}
-              onKeyDown={onKeyDown}
-            />
-          </div>
-          <Button disabled={isLoading} onClick={login}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Sign In with Email
-          </Button>
+      <div className="grid gap-2">
+        <div className="grid gap-1">
+          <Label className="sr-only" htmlFor="email">
+            Email
+          </Label>
+          <Input
+            id="email"
+            placeholder="name@example.com"
+            type="email"
+            autoCapitalize="none"
+            autoComplete="email"
+            autoCorrect="off"
+            disabled={isLoading}
+            onChange={
+              (e: any) => {
+                setPassword(e.target.value)
+              }}
+            onKeyDown={onKeyDown}
+          />
+          <Input
+            id="password"
+            placeholder="password"
+            type="password"
+            autoCapitalize="none"
+            autoComplete="password"
+            autoCorrect="off"
+            disabled={isLoading}
+            onChange={
+              (e: any) => {
+                setPassword(e.target.value)
+              }}
+            onKeyDown={onKeyDown}
+          />
         </div>
-      </form>
+        <Button disabled={isLoading} onClick={login}>
+          {isLoading && (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          )}
+          Sign In with Email
+        </Button>
+      </div>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -180,7 +176,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading} >
+      <Button variant="outline" type="button" disabled={isLoading} onClick={
+        githubLogin
+      } >
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
