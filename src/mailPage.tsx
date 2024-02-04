@@ -1,6 +1,8 @@
 import { Mail } from "@/components/mail"
 import { accounts, mails } from "@/data"
 import { CookiesProvider, useCookies } from "react-cookie";
+import { Menu } from "./components/menu";
+import { Toaster } from "./components/ui/toaster";
 
 export default function MailPage() {
   const [cookies] = useCookies(["react-resizable-panels:layout", "react-resizable-panels:collapsed"])
@@ -11,16 +13,15 @@ export default function MailPage() {
   const defaultCollapsed = collapsed
   return (
     <CookiesProvider>
-
-      <div className="hidden flex-col md:flex">
-        <Mail
-          accounts={accounts}
-          mails={mails}
-          defaultLayout={defaultLayout}
-          defaultCollapsed={defaultCollapsed}
-          navCollapsedSize={4}
-        />
-      </div>
+      <Menu />
+      <Mail
+        accounts={accounts}
+        mails={mails}
+        defaultLayout={defaultLayout}
+        defaultCollapsed={defaultCollapsed}
+        navCollapsedSize={4}
+      />
+      <Toaster />
     </CookiesProvider>
   )
 }

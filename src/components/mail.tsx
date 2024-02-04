@@ -2,27 +2,13 @@
 import * as React from "react"
 import {LeftPanel} from "./leftPanel"
 import {
-  AlertCircle,
-  Archive,
-  ArchiveX,
-  File,
-  Inbox,
-  MessagesSquare,
-  PenBox,
   Search,
-  Send,
-  ShoppingCart,
-  Trash2,
-  Users2,
 } from "lucide-react"
 
-import { AccountSwitcher } from "@/components/account-switcher"
 import { MailDisplay } from "@/components/mail-display"
 import { MailList } from "@/components/mail-list"
-import { Nav } from "@/components/nav"
 import { Mail } from "@/data"
-import { useMail } from "@/use-mail"
-import { cn } from "@/lib/utils"
+import { useMail } from "@/useHooks"
 import { Separator } from "@/registry/new-york/ui/separator"
 import { Input } from "@/registry/new-york/ui/input"
 import {
@@ -53,7 +39,6 @@ export function Mail({
   defaultCollapsed = false,
   navCollapsedSize,
 }: MailProps) {
-  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
   const [mail] = useMail()
 
   return (
@@ -65,7 +50,12 @@ export function Mail({
             sizes
           )}`
         }}
-        className="h-full max-h-[100vh] items-stretch"
+        className="h-full items-stretch"
+        style={
+          {
+            maxHeight: "calc(100vh - 36px)"
+          }
+        }
       >
         <LeftPanel
           accounts={accounts}

@@ -3,27 +3,19 @@ import * as React from "react"
 import {
   AlertCircle,
   Archive,
-  ArchiveX,
   File,
   Inbox,
   MessagesSquare,
   PaintBucket,
-  PenBox,
-  PictureInPicture,
-  Search,
-  Send,
   ShoppingCart,
-  Trash2,
   Users2,
 } from "lucide-react"
 import * as icon from "lucide-react"
-import { AccountSwitcher } from "@/components/account-switcher"
 import { Nav } from "@/components/nav"
 import { Mail } from "@/data"
 import { cn } from "@/lib/utils"
 import { Separator } from "@/registry/new-york/ui/separator"
 import { ResizablePanel } from "@/registry/new-york/ui/resizable"
-import { DrawingPinIcon } from "@radix-ui/react-icons"
 import { ThemeSwitcher } from "./themeSwitcher"
 
 interface MailProps {
@@ -39,7 +31,6 @@ interface MailProps {
 }
 
 export function LeftPanel({
-  accounts,
   defaultLayout = [265, 440, 655],
   defaultCollapsed = false,
   navCollapsedSize,

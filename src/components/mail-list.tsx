@@ -1,12 +1,11 @@
 import { ComponentProps } from "react"
-import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/new-york/ui/badge"
 import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
-import { Separator } from "@/registry/new-york/ui/separator"
 import { Mail } from "@/data"
-import { useMail } from "@/use-mail"
+import { useMail } from "@/useHooks"
 
 interface MailListProps {
   items: Mail[]
@@ -18,7 +17,7 @@ export function MailList({ items }: MailListProps) {
   return (
     <ScrollArea id="debug" style={
       {
-        height: "calc(100vh - 125px)",
+        height: "calc(100vh - 36px - 52px - 68px - 2px)",
         width: "100%",
       }
     }>

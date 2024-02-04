@@ -15,3 +15,25 @@ bun run dev
 bun run build
 ```
 
+## Used shadui components
+
+```bash
+bunx --bun shadcn-ui@latest add dropdown-menu
+bunx --bun shadcn-ui@latest add dropdown-menu
+bunx --bun shadcn-ui@latest add separator
+bunx --bun shadcn-ui@latest add avatar
+bunx --bun shadcn-ui@latest add calendar
+bunx --bun shadcn-ui@latest add label
+bunx --bun shadcn-ui@latest add popover
+bunx --bun shadcn-ui@latest add switch
+bunx --bun shadcn-ui@latest add textarea
+bunx --bun shadcn-ui@latest add tooltip
+bunx --bun shadcn-ui@latest add scroll-area
+bunx --bun shadcn-ui@latest add badge
+bunx --bun shadcn-ui@latest add input
+bunx --bun shadcn-ui@latest add tabs
+bunx --bun shadcn-ui@latest add resizable
+bunx --bun shadcn-ui@latest add select
+bunx --bun shadcn-ui@latest add accordion
+
+```
