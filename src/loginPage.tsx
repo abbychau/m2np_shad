@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { useAuthToken } from "./useHooks"
 
+import FirebaseApp from "./lib/firebaseApp"
+console.log(FirebaseApp.name)
+
+import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+
+const provider = new GithubAuthProvider();
+provider.addScope('read:user');
+provider.addScope('user:email');
+const auth = getAuth();
+
+
 import { Icons } from "@/components/icons"
 import { Button } from "@/registry/new-york/ui/button"
 import { Input } from "@/registry/new-york/ui/input"
@@ -8,7 +19,6 @@ import { Label } from "@/registry/new-york/ui/label"
 //axios
 import axios from 'axios';
 import { Metadata } from "next"
-
 import { cn } from "@/lib/utils"
 import { DialogLink } from "./components/dialogLink";
 import { TermsOfService } from "./data";
@@ -16,6 +26,7 @@ export const metadata: Metadata = {
   title: "Authentication",
   description: "Authentication forms built using the components.",
 }
+
 
 export default function LoginPage() {
   return (
@@ -117,10 +128,48 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     event.preventDefault()
     setIsLoading(true)
 
-    setTimeout(() => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+  
+      // The signed-in user info.
+      const user = result.user;
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+
+      console.log(user)
+      console.log(token)
+
+      //TODO axios to entrance/authWithGithubToken and pass user info and token to backend, get token back
+      axios.post('http://localhost:3000/entrance/authWithGithubToken', {
+        token: token,
+        user: user
+      }).then((response) => {
+        console.log(response.data);
+        setAuthToken(response.data.token);
+      }).catch((error) => {
+        console.log(error);
+      })
+
+
+      
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GithubAuthProvider.credentialFromError(error);
+      // ...
+
+      console.log(error)
+    }).finally(() => {
       setIsLoading(false)
-      setAuthToken("1111");
-    }, 3000)
+    });
+    
   }
 
   return (

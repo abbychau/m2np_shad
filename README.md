@@ -37,3 +37,5 @@ bunx --bun shadcn-ui@latest add select
 bunx --bun shadcn-ui@latest add accordion
 
 ```
+
+37a0479e3fcaa9b642bb5921285f1bfd8412ede1
