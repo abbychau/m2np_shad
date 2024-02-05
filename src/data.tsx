@@ -174,6 +174,49 @@ export const mails = [
   },
 ]
 
+const replyData = [
+  {
+    id: 3,
+    userId: 1223,
+    userName: "Alicia Koch",
+    avatar: "https://randomuser.me/api/portraits/women/1.jpg",
+    text: "That's great news! I'm excited to get started on the project. Let's make it a success!",
+    date: "2022-08-10T16:50:00",
+    
+  },
+  {
+    id: 4,
+    userId: 1224,
+    userName: "John Doe",
+    avatar: "https://randomuser.me/api/portraits/women/3.jpg",
+    text: "I've reviewed the budget, and everything looks good. We're all set to proceed.",
+    date: "2022-08-10T16:55:00",
+  },
+  {
+    id: 5,
+    userId: 1225,
+    userName: "Jane Smith",
+    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
+    text: "Looking forward to working with you on this project. Let's make it a success!",
+    date: "2022-08-10T17:00:00",
+  },
+  {
+    id: 6,
+    userId: 1226,
+    userName: "Michael Johnson",
+    avatar: "https://randomuser.me/api/portraits/women/4.jpg",
+    text: "I'm glad to hear that the budget has been approved. We can now focus on delivering a successful project.",
+    date: "2022-08-10T17:05:00",
+  }
+];
+
+export let replies = [
+  {
+    threadId: "d67c1842-7f8b-4b4b-9be1-1b3b1ab4611d",
+    replyData: replyData
+  }
+];
+export type Reply = (typeof replyData)[number]
 export type Mail = (typeof mails)[number]
 
 export const accounts = [

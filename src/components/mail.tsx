@@ -5,10 +5,10 @@ import {
   Search,
 } from "lucide-react"
 
-import { MailDisplay } from "@/components/mail-display"
+import { PostDisplay } from "@/components/postDisplay"
 import { MailList } from "@/components/mail-list"
-import { Mail } from "@/data"
-import { useMail } from "@/useHooks"
+import { Mail, replies } from "@/data"
+import { useSelectedPostId } from "@/useHooks"
 import { Separator } from "@/registry/new-york/ui/separator"
 import { Input } from "@/registry/new-york/ui/input"
 import {
@@ -39,7 +39,7 @@ export function Mail({
   defaultCollapsed = false,
   navCollapsedSize,
 }: MailProps) {
-  const [mail] = useMail()
+  const [selectedPostId] = useSelectedPostId()
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -93,8 +93,9 @@ export function Mail({
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[2]}>
-          <MailDisplay
-            mail={mails.find((item) => item.id === mail.selected) || null}
+          <PostDisplay
+            mail={mails.find((item) => item.id === selectedPostId) || null}
+            replies={replies.find((item) => item.threadId === selectedPostId)?.replyData || []}
           />
         </ResizablePanel>
       </ResizablePanelGroup>

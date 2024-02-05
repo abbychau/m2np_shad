@@ -3,11 +3,7 @@ import { atomWithStorage } from 'jotai/utils'
 import { mails } from "@/data"
 
 
-const configAtom = atomWithStorage('jotai:mailId',{selected: mails[0].id})
 
-function useMail() {
-  return useAtom(configAtom)
-}
 
 const authTokenAtom = atomWithStorage('jotai:authToken','')
 
@@ -29,8 +25,14 @@ function usePostBox() {
   return useAtom(postBoxAtom)
 }
 
+const configAtom = atomWithStorage('jotai:selectedPostItem',"d67c1842-7f8b-4b4b-9be1-1b3b1ab4611d")
+
+function useSelectedPostId() {
+  return useAtom(configAtom)
+}
+
 export {
-  useMail,
+  useSelectedPostId,
   useAuthToken,
   useLayout,
   usePostBox
