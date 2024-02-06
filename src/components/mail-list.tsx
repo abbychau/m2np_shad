@@ -15,7 +15,7 @@ export function MailList({ items }: MailListProps) {
   const [selectedPostId, setSelectedPostId] = useSelectedPostId()
 
   return (
-    <ScrollArea id="debug" style={
+    <ScrollArea style={
       {
         height: "calc(100vh - 36px - 52px - 68px - 2px)",
         width: "100%",
@@ -36,7 +36,7 @@ export function MailList({ items }: MailListProps) {
             <div className="flex w-full flex-col gap-1">
               <div className="flex items-center">
                 <div className="flex items-center gap-2">
-                  <div className="font-semibold">{item.name}</div>
+                  <div className="font-semibold">{item.username}</div>
                   {!item.read && (
                     <span className="flex h-2 w-2 rounded-full bg-blue-600" />
                   )}

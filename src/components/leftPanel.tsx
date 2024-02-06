@@ -56,7 +56,7 @@ export function LeftPanel({
       }}
       className={cn(isCollapsed && "min-w-[50px] transition-all duration-300 ease-in-out")}
     >
-      <ScrollArea id="debug" style={
+      <ScrollArea style={
         {
           height: "calc(100vh - 36px - 2px)",
           width: "100%",

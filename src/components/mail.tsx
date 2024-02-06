@@ -94,7 +94,7 @@ export function Mail({
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={defaultLayout[2]}>
           <PostDisplay
-            mail={mails.find((item) => item.id === selectedPostId) || null}
+            postMeta={mails.find((item) => item.id === selectedPostId) || null}
             replies={replies.find((item) => item.threadId === selectedPostId)?.replyData || []}
           />
         </ResizablePanel>
