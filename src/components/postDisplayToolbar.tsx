@@ -88,7 +88,7 @@ export default function MailDisplayToolbar(
                     variant="ghost"
                     className="justify-start font-normal"
                   >
-                    NF - Arts{" "}
+                    Arts{" "}
                     <span className="ml-auto text-muted-foreground">
                       3
                     </span>

@@ -21,11 +21,6 @@ import { UpdateIcon } from "@radix-ui/react-icons"
 import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
 
 interface MailProps {
-  accounts: {
-    label: string
-    email: string
-    icon: React.ReactNode
-  }[]
   mails: Mail[]
   defaultLayout: number[] | undefined
   defaultCollapsed?: boolean
@@ -64,10 +59,9 @@ export function LeftPanel({
       }>
         <div className={cn("flex h-[52px] items-center justify-center", isCollapsed ? 'h-[52px]' : 'px-2')}>
           {isCollapsed ? (
-            <h1 className="text-xl font-bold">M<sup>2</sup></h1>
+            <ThemeSwitcher />
           ) : (
             <>
-            <h1 className="text-xl font-bold">M<sup>2</sup>NP</h1>
             <ThemeSwitcher />
             </>
           )}
@@ -138,14 +132,14 @@ export function LeftPanel({
           isCollapsed={isCollapsed}
           links={[
             {
-              title: "Creations",
+              title: "Social",
               label: "",
-              icon: PaintBucket,
+              icon: icon.Hash,
               variant: "ghost",
             },
             {
-              title: "Social",
-              label: "",
+              title: "FoodOfTokyo",
+              label: "3",
               icon: icon.Hash,
               variant: "ghost",
             },
@@ -162,9 +156,9 @@ export function LeftPanel({
               variant: "ghost",
             },
             {
-              title: "NF - Art",
+              title: "Arts",
               label: "8",
-              icon: ShoppingCart,
+              icon: PaintBucket,
               variant: "ghost",
             },
           ]}

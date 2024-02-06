@@ -21,11 +21,6 @@ import { TooltipProvider } from "@/registry/new-york/ui/tooltip"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/registry/new-york/ui/resizable"
 
 interface MailProps {
-  accounts: {
-    label: string
-    email: string
-    icon: React.ReactNode
-  }[]
   mails: Mail[]
   defaultLayout: number[] | undefined
   defaultCollapsed?: boolean
@@ -33,7 +28,6 @@ interface MailProps {
 }
 
 export function Mail({
-  accounts,
   mails,
   defaultLayout = [265, 440, 655],
   defaultCollapsed = false,
@@ -58,7 +52,6 @@ export function Mail({
         }
       >
         <LeftPanel
-          accounts={accounts}
           defaultLayout={defaultLayout}
           defaultCollapsed={defaultCollapsed}
           navCollapsedSize={navCollapsedSize}

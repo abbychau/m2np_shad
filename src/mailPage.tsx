@@ -1,5 +1,5 @@
 import { Mail } from "@/components/mail"
-import { accounts, mails } from "@/data"
+import { mails } from "@/data"
 import { Menu } from "./components/menu";
 import { Toaster } from "./components/ui/toaster";
 import { useLayout } from "./useHooks";
@@ -13,7 +13,6 @@ export default function MailPage() {
     <>
       <Menu />
       <Mail
-        accounts={accounts}
         mails={mails}
         defaultLayout={_layout}
         defaultCollapsed={_collapsed}
